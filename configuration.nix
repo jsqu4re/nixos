@@ -26,7 +26,7 @@
 
   networking.hostName = "zu"; # Define your hostname.
 
-  networking.useDHCP = false;
+  # networking.useDHCP = true;
   # networking.defaultGateway = "192.168.1.1";
   # networking.interfaces.enp1s0.useDHCP = false;
   # networking.interfaces.enp1s0.ipv4.addresses = [{ address = "192.168.1.41"; prefixLength = 24; }];
@@ -40,10 +40,10 @@
   # networking.interfaces.veth0.virtual = true;
   # networking.interfaces.veth0.ipv4.addresses = [{ address = "192.168.1.220"; prefixLength = 24; }];
 
-  networking.bridges.br0.interfaces = [ "enp1s0" ];
+  # networking.bridges.br0.interfaces = [ "enp1s0" ];
   # networking.interfaces.enp1s0.useDHCP = true;
   # networking.interfaces.br0.macAddress = "AA:00:00:00:00:01";
-  networking.interfaces.br0.ipv4.addresses = [{ address = "192.168.1.41"; prefixLength = 24; }];
+  # networking.interfaces.br0.ipv4.addresses = [{ address = "192.168.1.41"; prefixLength = 24; }];
 
   # networking.nat = {
   #   enable = true;
