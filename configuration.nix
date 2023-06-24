@@ -25,11 +25,24 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "zu"; # Define your hostname.
+  # networking.macvlans.eth-host = {
+  #   interface = "enp1s0";
+  #   mode = "bridge";
+  # };
+
+  # networking.interfaces.enp1s0.ipv4.addresses = lib.mkForce [];
+
+  # networking.interfaces.eth-host = {
+  #   ipv4.addresses = [ { address = "192.168.1.41"; prefixLength = 24; } ];
+  # };
 
   # networking.useDHCP = true;
   # networking.defaultGateway = "192.168.1.1";
   # networking.interfaces.enp1s0.useDHCP = false;
-  # networking.interfaces.enp1s0.ipv4.addresses = [{ address = "192.168.1.41"; prefixLength = 24; }];
+  networking.interfaces.enp1s0.ipv4.addresses = [
+    { address = "192.168.1.41"; prefixLength = 24; }
+    { address = "192.168.1.220"; prefixLength = 24; }
+  ];
   #   {
   #     address = "192.168.1.240";
   #     prefixLength = 24;
