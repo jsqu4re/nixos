@@ -2,16 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  imports =
-    [
+  imports = [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
       ./containers/unifi.nix
+      ./containers/tailscale.nix
       ./development/vscode-server.nix
       ./services/samba.nix
       ./services/jellyfin.nix
@@ -24,25 +24,31 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "zu"; # Define your hostname.
-  # networking.macvlans.eth-host = {
-  #   interface = "enp1s0";
-  #   mode = "bridge";
-  # };
+  networking.hostName = "nihil"; # Define your hostname.
 
-  # networking.interfaces.enp1s0.ipv4.addresses = lib.mkForce [];
+  # virtualisation.vlans = [ 1 ];
 
-  # networking.interfaces.eth-host = {
-  #   ipv4.addresses = [ { address = "192.168.1.41"; prefixLength = 24; } ];
-  # };
+  networking.macvlans.eth-host = {
+    interface = "enp1s0";
+    mode = "bridge";
+  };
+
+  networking.interfaces.enp1s0.ipv4.addresses = lib.mkForce [];
+
+  networking.interfaces.eth-host = {
+    ipv4.addresses = [
+      { address = "192.168.1.41"; prefixLength = 24; }
+      { address = "192.168.1.220"; prefixLength = 24; }
+    ];
+  };
 
   # networking.useDHCP = true;
-  # networking.defaultGateway = "192.168.1.1";
+  networking.defaultGateway = "192.168.1.1";
   # networking.interfaces.enp1s0.useDHCP = false;
-  networking.interfaces.enp1s0.ipv4.addresses = [
-    { address = "192.168.1.41"; prefixLength = 24; }
-    { address = "192.168.1.220"; prefixLength = 24; }
-  ];
+  # networking.interfaces.enp1s0.ipv4.addresses = [
+  #   { address = "192.168.1.41"; prefixLength = 24; }
+  #   { address = "192.168.1.220"; prefixLength = 24; }
+  # ];
   #   {
   #     address = "192.168.1.240";
   #     prefixLength = 24;
