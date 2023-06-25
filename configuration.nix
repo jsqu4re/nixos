@@ -11,7 +11,7 @@
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
       ./containers/unifi.nix
-      ./containers/tailscale.nix
+      ./services/tailscale.nix
       ./development/vscode-server.nix
       ./services/samba.nix
       ./services/jellyfin.nix
