@@ -5,6 +5,8 @@
 
   services.tailscale.enable = true;
 
+  services.tailscale.useRoutingFeatures = "server";
+
   systemd.services.tailscale-autoconnect = {
     description = "Automatic connection to Tailscale";
 
@@ -28,7 +30,7 @@
       fi
 
     # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up -authkey tskey-auth-kABGVX7CNTRL-MYeLN8ra4mcdhnYPzAWFmcRWqS8ZKpoaX 
+      ${tailscale}/bin/tailscale up --advertise-exit-node --exit-node -authkey tskey-auth-kABGVX7CNTRL-MYeLN8ra4mcdhnYPzAWFmcRWqS8ZKpoaX 
     '';
   };
 }
