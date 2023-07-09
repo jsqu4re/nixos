@@ -11,6 +11,8 @@
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
       ./containers/unifi.nix
+      ./containers/homarr.nix
+      ./containers/dashdot.nix
       ./services/tailscale.nix
       ./development/vscode-server.nix
       ./services/samba.nix
@@ -170,10 +172,12 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    80 433 # Nginx
-    88 8123 # Home Assistant
-    445 139 5357 # Samba
+    80 433 # nginx
+    88 8123 # home assistant
+    445 139 5357 # samba
     8443 8080 8843 8880 6789
+    3012 # dashdot
+    7575 # homarr
   ];
   networking.firewall.allowedUDPPorts = [
     137 138 3702 # Samba
