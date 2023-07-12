@@ -11,8 +11,10 @@
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
       ./containers/unifi.nix
-      ./containers/homarr.nix
-      ./containers/dashdot.nix
+      # ./containers/homarr.nix
+      # ./containers/dashdot.nix
+      ./containers/uptime.nix
+      ./containers/paperless.nix
       ./services/tailscale.nix
       ./development/vscode-server.nix
       ./services/samba.nix
@@ -39,7 +41,7 @@
 
   networking.interfaces.eth-host = {
     ipv4.addresses = [
-      { address = "192.168.1.41"; prefixLength = 24; }
+     # { address = "192.168.1.41"; prefixLength = 24; }
       { address = "192.168.1.220"; prefixLength = 24; }
     ];
   };
@@ -176,8 +178,8 @@
     88 8123 # home assistant
     445 139 5357 # samba
     8443 8080 8843 8880 6789
-    3012 # dashdot
-    7575 # homarr
+    # 3012 # dashdot
+    # 7575 # homarr
   ];
   networking.firewall.allowedUDPPorts = [
     137 138 3702 # Samba
