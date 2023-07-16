@@ -82,6 +82,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   virtualisation.podman.enable = true;
 
