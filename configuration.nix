@@ -11,12 +11,13 @@
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
       ./containers/unifi.nix
+      ./containers/adguard.nix
       # ./containers/homarr.nix
       # ./containers/dashdot.nix
       ./containers/uptime.nix
       ./containers/paperless.nix
       ./services/tailscale.nix
-      ./development/vscode-server.nix
+      # ./development/code-server.nix
       ./services/samba.nix
       ./services/jellyfin.nix
       ./services/nginx.nix
@@ -30,24 +31,35 @@
 
   networking.hostName = "nihil"; # Define your hostname.
 
-  # virtualisation.vlans = [ 1 ];
+  networking.vlans = {
+    vlan1 = {
+      id = 1;
+      interface = "enp1s0";
+    };
+    vlan2 = {
+      id = 2;
+      interface = "enp1s0";
+    };
+  };
 
-  networking.macvlans.eth-host = {
+  networking.macvlans.mv-enp1s0-host = {
     interface = "enp1s0";
     mode = "bridge";
   };
 
   networking.interfaces.enp1s0.ipv4.addresses = lib.mkForce [];
 
-  networking.interfaces.eth-host = {
+  networking.interfaces.mv-enp1s0-host = {
     ipv4.addresses = [
-     # { address = "192.168.1.41"; prefixLength = 24; }
       { address = "192.168.1.220"; prefixLength = 24; }
     ];
   };
 
+  # { address = "192.168.1.41"; prefixLength = 24; }
+
   # networking.useDHCP = true;
   networking.defaultGateway = "192.168.1.1";
+
   # networking.interfaces.enp1s0.useDHCP = false;
   # networking.interfaces.enp1s0.ipv4.addresses = [
   #   { address = "192.168.1.41"; prefixLength = 24; }
@@ -181,6 +193,7 @@
     8443 8080 8843 8880 6789
     # 3012 # dashdot
     # 7575 # homarr
+    # 4444 # Code Server
   ];
   networking.firewall.allowedUDPPorts = [
     137 138 3702 # Samba
