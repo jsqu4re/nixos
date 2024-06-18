@@ -11,7 +11,7 @@
       };
       networking.defaultGateway.address = "192.168.1.1";
       networking.firewall.enable = false;
-      system.stateVersion = "23.05";
+      system.stateVersion = "24.05";
 
       services.nginx = {
         enable = true;
