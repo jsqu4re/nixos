@@ -23,7 +23,13 @@
       ./services/nginx.nix
     ];
 
-    environment.variables.EDITOR = "nvim";
+  system.autoUpgrade = {
+    enable = true;
+    dates = "Sat *-*-* 03:30:00";
+    allowReboot = true;
+  };
+
+  environment.variables.EDITOR = "nvim";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -117,9 +123,9 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -190,14 +196,14 @@
     80 433 # nginx
     88 8123 # home assistant
     445 139 5357 # samba
-    8443 8080 8843 8880 6789
+    8443 8080 8843 8880 6789 # Unifi
     # 3012 # dashdot
     # 7575 # homarr
     # 4444 # Code Server
   ];
   networking.firewall.allowedUDPPorts = [
     137 138 3702 # Samba
-    3478 10001 1900 5514
+    3478 10001 1900 5514 # Unifi
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

@@ -36,7 +36,7 @@
 
       services.paperless = {
         enable = true;
-        extraConfig = {
+        settings = {
           PAPERLESS_OCR_LANGUAGE = "deu+eng";
           # PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
         }; 
