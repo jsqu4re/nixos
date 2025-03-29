@@ -10,12 +10,13 @@
       ./hardware-configuration.nix
       # ./containers/homeassistant.nix
       ./containers/ytdl-sub.nix
-      ./containers/unifi.nix
       ./containers/adguard.nix
+      # ./containers/unifi.nix
       # ./containers/homarr.nix
       # ./containers/dashdot.nix
       ./containers/uptime.nix
       ./containers/paperless.nix
+      ./services/unifi.nix
       ./services/tailscale.nix
       # ./development/code-server.nix
       ./services/samba.nix

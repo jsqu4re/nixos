@@ -15,6 +15,9 @@
       "/home/jsqu4re/workspace/yt/config:/config"
       "/data/jellyfin/shows:/tv-shows"
     ];
+    ports = [
+      "8443:8443"
+    ];
     extraOptions = [
       "--network=host"
     ];
